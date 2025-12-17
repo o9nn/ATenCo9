@@ -42,6 +42,11 @@ set(COGINT_SOURCES
     
     # Distributed Computing
     distributed/cog_distributed.c
+    
+    # Tensor Networks
+    tensornet/cog_tensornet.c
+    tensornet/cog_decompose.c
+    tensornet/cog_distributed_tn.c
 )
 
 # Create CogInt library

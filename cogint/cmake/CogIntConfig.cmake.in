@@ -1,0 +1,27 @@
+@PACKAGE_INIT@
+
+# CogInt Package Configuration File
+
+set(COGINT_VERSION "@PROJECT_VERSION@")
+set(COGINT_VERSION_MAJOR "@PROJECT_VERSION_MAJOR@")
+set(COGINT_VERSION_MINOR "@PROJECT_VERSION_MINOR@")
+set(COGINT_VERSION_PATCH "@PROJECT_VERSION_PATCH@")
+
+# Compute paths
+get_filename_component(COGINT_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(COGINT_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@/cogint")
+
+# Find dependencies
+include(CMakeFindDependencyMacro)
+find_dependency(Threads REQUIRED)
+
+# Import targets
+if(NOT TARGET CogInt::cogint)
+    include("${COGINT_CMAKE_DIR}/CogIntTargets.cmake")
+endif()
+
+# Set library variables
+set(COGINT_LIBRARIES CogInt::cogint)
+set(COGINT_FOUND TRUE)
+
+check_required_components(CogInt)

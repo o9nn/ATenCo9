@@ -39,6 +39,9 @@
 
 #include "cogint.h"
 
+/* Forward declarations */
+typedef struct CogRuntime CogRuntime;
+
 #ifdef __cplusplus
 extern "C" {
 #endif

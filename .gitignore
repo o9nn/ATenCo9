@@ -1,0 +1,87 @@
+# Build directories
+build/
+cogint/build/
+*/build/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+!cmake/*.cmake.in
+
+# Compiled libraries
+*.so
+*.so.*
+*.a
+*.dylib
+*.dll
+*.lib
+
+# Compiled objects
+*.o
+*.obj
+*.lo
+
+# Executables
+*.exe
+*.out
+test_*
+!test_*.c
+example_*
+!example_*.c
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Debug files
+*.dSYM/
+*.pdb
+*.ilk
+
+# Logs
+*.log
+build.log
+cmake_output.log
+
+# Package files
+*.tar.gz
+*.zip
+*.deb
+*.rpm
+
+# Generated documentation
+docs/html/
+docs/latex/
+docs/man/
+
+# Test outputs
+Testing/
+test_results/
+
+# Backup files
+*.bak
+*.orig
+
+# Python (if any Python tools are used)
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# CUDA
+*.ptx
+*.cubin
+*.fatbin
+
+# Temporary files
+tmp/
+temp/
+*.tmp

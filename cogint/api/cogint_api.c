@@ -554,7 +554,7 @@ COGINT_API int cog_pln_infer(CogAtomSpace *as, CogAtom *query,
     int rc = cog_pln_inference(as, query, &config, &found, &found_count);
     if (rc != COG_OK) return rc;
     
-    *results = found;
+    *results = *found;
     *n = found_count;
     
     return COG_OK;
@@ -751,7 +751,7 @@ int cog_pipeline_reason(CogPipeline *pipe, CogAtom *query) {
     }
     
     /* Run PLN inference */
-    CogAtom **results = NULL;
+    CogAtom *results = NULL;
     size_t n_results = 0;
     
     int rc = cog_pln_infer(pipe->atomspace, query, &results, &n_results);

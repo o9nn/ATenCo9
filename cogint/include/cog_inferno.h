@@ -18,7 +18,7 @@
  * │  └─────────────────────────────────────────────────────────────┘│
  * │  ┌─────────────────────────────────────────────────────────────┐│
  * │  │                 Styx File System                             ││
- * │  │  /tensor/*  /atom/*  /cog/*  /net/*                         ││
+ * │  │  /tensor/   /atom/   /cog/   /net/                          ││
  * │  └─────────────────────────────────────────────────────────────┘│
  * │  ┌─────────────────────────────────────────────────────────────┐│
  * │  │                 Distributed Scheduler                        ││
@@ -312,7 +312,7 @@ typedef struct {
 } CogRuntimeConfig;
 
 /* Distributed runtime */
-typedef struct {
+typedef struct CogRuntime {
     CogContext *ctx;
     CogAtomSpace *atomspace;
     CogNamespace *ns;

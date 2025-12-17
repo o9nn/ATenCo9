@@ -86,12 +86,10 @@ typedef enum {
     COG_DEVICE_ATOMSPACE = 3,    /* Stored in AtomSpace */
 } CogDeviceType;
 
-/* Atom types for OpenCog integration */
+/* Atom types for OpenCog integration - see cog_atomspace.h for full definitions */
 typedef enum {
     COG_ATOM_NODE = 0,
     COG_ATOM_LINK = 1,
-    COG_ATOM_TENSOR_NODE = 2,      /* Tensor stored as atom */
-    COG_ATOM_TENSOR_LINK = 3,      /* Tensor relationship */
     COG_ATOM_CONCEPT = 4,
     COG_ATOM_PREDICATE = 5,
     COG_ATOM_EVALUATION = 6,

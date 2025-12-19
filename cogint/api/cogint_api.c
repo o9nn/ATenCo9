@@ -237,6 +237,132 @@ COGINT_API int cog_tensor_copy(CogTensor *dst, CogTensor *src) {
 }
 
 /*============================================================================
+ * Tensor Properties
+ *============================================================================*/
+
+COGINT_API int cog_tensor_ndim(CogTensor *tensor) {
+    if (!tensor) return 0;
+    return tensor->ndim;
+}
+
+COGINT_API int64_t cog_tensor_size(CogTensor *tensor, int dim) {
+    if (!tensor || dim < 0 || dim >= tensor->ndim) return 0;
+    return tensor->shape[dim];
+}
+
+COGINT_API CogDType cog_tensor_dtype(CogTensor *tensor) {
+    if (!tensor) return COG_DTYPE_FLOAT32;
+    return tensor->dtype;
+}
+
+COGINT_API void* cog_tensor_data(CogTensor *tensor) {
+    if (!tensor) return NULL;
+    return tensor->data;
+}
+
+/*============================================================================
+ * Tensor Manipulation
+ *============================================================================*/
+
+COGINT_API int cog_tensor_fill(CogTensor *tensor, double value) {
+    if (!tensor || !tensor->data) return COG_ERR_INVALID;
+    
+    size_t i;
+    switch (tensor->dtype) {
+        case COG_DTYPE_FLOAT32: {
+            float *data = (float*)tensor->data;
+            for (i = 0; i < tensor->numel; i++) {
+                data[i] = (float)value;
+            }
+            break;
+        }
+        case COG_DTYPE_FLOAT64: {
+            double *data = (double*)tensor->data;
+            for (i = 0; i < tensor->numel; i++) {
+                data[i] = value;
+            }
+            break;
+        }
+        case COG_DTYPE_INT32: {
+            int32_t *data = (int32_t*)tensor->data;
+            for (i = 0; i < tensor->numel; i++) {
+                data[i] = (int32_t)value;
+            }
+            break;
+        }
+        case COG_DTYPE_INT64: {
+            int64_t *data = (int64_t*)tensor->data;
+            for (i = 0; i < tensor->numel; i++) {
+                data[i] = (int64_t)value;
+            }
+            break;
+        }
+        default:
+            /* For other types, fill as float32 */
+            {
+                float *data = (float*)tensor->data;
+                for (i = 0; i < tensor->numel; i++) {
+                    data[i] = (float)value;
+                }
+            }
+            break;
+    }
+    
+    return COG_OK;
+}
+
+COGINT_API CogTensor* cog_tensor_reshape(CogTensor *tensor, int64_t *new_shape, int new_ndim) {
+    if (!tensor || !new_shape || new_ndim <= 0) {
+        set_error(COG_ERR_INVALID);
+        return NULL;
+    }
+    
+    /* Calculate new number of elements */
+    int64_t new_numel = 1;
+    for (int i = 0; i < new_ndim; i++) {
+        new_numel *= new_shape[i];
+    }
+    
+    /* Check that total elements match */
+    if (new_numel != tensor->numel) {
+        set_error(COG_ERR_INVALID);
+        return NULL;
+    }
+    
+    /* Create new tensor with same data */
+    CogTensor *reshaped = calloc(1, sizeof(CogTensor));
+    if (!reshaped) {
+        set_error(COG_ERR_NOMEM);
+        return NULL;
+    }
+    
+    reshaped->ndim = new_ndim;
+    reshaped->dtype = tensor->dtype;
+    reshaped->device = tensor->device;
+    reshaped->numel = new_numel;
+    reshaped->refcount = 1;
+    
+    /* Copy new shape */
+    reshaped->shape = malloc(new_ndim * sizeof(int64_t));
+    memcpy(reshaped->shape, new_shape, new_ndim * sizeof(int64_t));
+    
+    /* Calculate new strides */
+    reshaped->strides = malloc(new_ndim * sizeof(int64_t));
+    int64_t stride = 1;
+    for (int i = new_ndim - 1; i >= 0; i--) {
+        reshaped->strides[i] = stride;
+        stride *= new_shape[i];
+    }
+    
+    /* Copy data */
+    size_t elem_size = dtype_size(tensor->dtype);
+    reshaped->data = malloc(new_numel * elem_size);
+    memcpy(reshaped->data, tensor->data, new_numel * elem_size);
+    
+    return reshaped;
+}
+
+/*============================================================================
  * Tensor Arithmetic
  *============================================================================*/
 

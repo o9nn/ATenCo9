@@ -1,4 +1,4 @@
-#include <cogint/cog9p.h>
+#include <cog9p.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>

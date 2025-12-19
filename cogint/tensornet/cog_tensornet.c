@@ -28,7 +28,7 @@ static double get_time_sec(void) {
     return ts.tv_sec + ts.tv_nsec / 1e9;
 }
 
-static int64_t product(int64_t *arr, int n) {
+int64_t product(int64_t *arr, int n) {
     int64_t p = 1;
     for (int i = 0; i < n; i++) p *= arr[i];
     return p;

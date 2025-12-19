@@ -4,7 +4,7 @@
  * Demonstrates basic tensor creation and manipulation using CogInt.
  */
 
-#include <cogint/cogint.h>
+#include <cogint.h>
 #include <stdio.h>
 #include <stdlib.h>
 

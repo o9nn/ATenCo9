@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2025-12-19
+
+### Fixed
+- Include path configuration in tests and examples CMakeLists.txt
+- Missing tensor operation function implementations (fill, reshape, ndim, size, dtype, data)
+- Missing 9P protocol stub implementations (walk, tensor_create, tensor_read, tensor_write)
+- Symbol visibility for product() utility function in tensor network module
+- Function signature mismatch for cog9p_tensor_create()
+
+### Added
+- cog_tensor_fill() - Fill tensor with scalar value, supports all numeric types
+- cog_tensor_reshape() - Reshape tensor with dimension validation
+- cog_tensor_ndim() - Get number of tensor dimensions
+- cog_tensor_size() - Get size of specific dimension
+- cog_tensor_dtype() - Get tensor data type
+- cog_tensor_data() - Get raw data pointer
+- Stub implementations for 9P protocol client functions
+- CURRENT_ISSUES.md - Detailed analysis of identified issues
+- REPAIR_OPTIMIZATION_REPORT.md - Comprehensive repair and optimization documentation
+
+### Improved
+- Build system configuration with proper include directories
+- Error handling consistency across all new functions
+- Type safety in tensor operations with proper conversions
+- Memory management patterns in reshape and fill operations
+- Test coverage with successful execution of all test programs
+
+## [Previous Unreleased]
+
 ### Added
 - Comprehensive repository documentation (README.md, CONTRIBUTING.md)
 - Analysis report documenting repository structure and issues

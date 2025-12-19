@@ -1086,3 +1086,48 @@ COGINT_API void cog_9p_disconnect(Cog9PConn *conn) {
     free(conn->aname);
     free(conn);
 }
+
+/*============================================================================
+ * Client-side Tensor Operations (Stubs)
+ *============================================================================*/
+
+COGINT_API int cog9p_walk(Cog9PConn *conn, uint32_t fid, uint32_t newfid, 
+                          char **names, int nnames, Cog9PQid *qids) {
+    /* Stub implementation - full implementation requires protocol handling */
+    (void)conn;
+    (void)fid;
+    (void)newfid;
+    (void)names;
+    (void)nnames;
+    (void)qids;
+    return 0;
+}
+
+COGINT_API int cog9p_tensor_create(Cog9PConn *conn, const char *path,
+                                    CogDType dtype, int64_t *shape, int ndim,
+                                    uint32_t *fid) {
+    /* Stub implementation - full implementation requires protocol handling */
+    (void)conn;
+    (void)path;
+    (void)dtype;
+    (void)shape;
+    (void)ndim;
+    if (fid) *fid = 0;
+    return 0;
+}
+
+COGINT_API int cog9p_tensor_read(Cog9PConn *conn, uint32_t fid, CogTensor **tensor) {
+    /* Stub implementation - full implementation requires protocol handling */
+    (void)conn;
+    (void)fid;
+    (void)tensor;
+    return 0;
+}
+
+COGINT_API int cog9p_tensor_write(Cog9PConn *conn, uint32_t fid, CogTensor *tensor) {
+    /* Stub implementation - full implementation requires protocol handling */
+    (void)conn;
+    (void)fid;
+    (void)tensor;
+    return 0;
+}

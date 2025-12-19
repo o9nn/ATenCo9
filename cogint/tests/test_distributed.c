@@ -1,4 +1,4 @@
-#include <cogint/cog_inferno.h>
+#include <cog_inferno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>

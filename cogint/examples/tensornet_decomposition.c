@@ -4,8 +4,8 @@
  * Demonstrates tensor network decomposition methods (SVD, QR, etc.).
  */
 
-#include <cogint/cogint.h>
-#include <cogint/cog_tensornet.h>
+#include <cogint.h>
+#include <cog_tensornet.h>
 #include <stdio.h>
 #include <stdlib.h>
 

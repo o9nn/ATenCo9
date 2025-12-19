@@ -4,8 +4,8 @@
  * Demonstrates distributed tensor operations using 9P protocol.
  */
 
-#include <cogint/cogint.h>
-#include <cogint/cog9p.h>
+#include <cogint.h>
+#include <cog9p.h>
 #include <stdio.h>
 #include <stdlib.h>
 

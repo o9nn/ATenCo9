@@ -4,7 +4,7 @@
  * Demonstrates a simple perception-reasoning-action cycle using CogInt.
  */
 
-#include <cogint/cogint.h>
+#include <cogint.h>
 #include <stdio.h>
 #include <stdlib.h>
 

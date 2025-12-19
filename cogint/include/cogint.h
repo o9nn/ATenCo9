@@ -302,6 +302,16 @@ COGINT_API void cog_tensor_free(CogTensor *tensor);
 COGINT_API CogTensor* cog_tensor_clone(CogTensor *tensor);
 COGINT_API int cog_tensor_copy(CogTensor *dst, CogTensor *src);
 
+/* Tensor properties */
+COGINT_API int cog_tensor_ndim(CogTensor *tensor);
+COGINT_API int64_t cog_tensor_size(CogTensor *tensor, int dim);
+COGINT_API CogDType cog_tensor_dtype(CogTensor *tensor);
+COGINT_API void* cog_tensor_data(CogTensor *tensor);
+
+/* Tensor manipulation */
+COGINT_API int cog_tensor_fill(CogTensor *tensor, double value);
+COGINT_API CogTensor* cog_tensor_reshape(CogTensor *tensor, int64_t *new_shape, int new_ndim);
+
 /* Tensor arithmetic */
 COGINT_API CogTensor* cog_tensor_add(CogTensor *a, CogTensor *b);
 COGINT_API CogTensor* cog_tensor_mul(CogTensor *a, CogTensor *b);
